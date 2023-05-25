@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import filedialog
-from ttkbootstrap import Style
 
 class Notepad:
     def __init__(self, root):
@@ -11,15 +10,13 @@ class Notepad:
         self.create_menu()
 
     def create_menu(self):
-        style = Style(theme='journal')
-        menubar = style.add_component('menubar', tk.Menu(self.root))
-        file_menu = style.add_component('menu', tk.Menu(menubar, tearoff=0))
+        menubar = tk.Menu(self.root)
+        file_menu = tk.Menu(menubar, tearoff=0)
         file_menu.add_command(label="New", accelerator="Ctrl+N", command=self.new_file)
         file_menu.add_command(label="Open", accelerator="Ctrl+O", command=self.open_file)
         file_menu.add_command(label="Save", accelerator="Ctrl+S", command=self.save_file)
         file_menu.add_separator()
         file_menu.add_command(label="Exit", accelerator="Ctrl+Q", command=self.root.quit)
-        style.configure_component('menu', foreground='black', background='white')
         menubar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menubar)
 
